@@ -1,3 +1,7 @@
+fn cprint(color: &str, text: &str) {
+    println!("{}{}{}", color, text, "\x1b[0m");
+}
+
 fn main() {
-    println!("{}{}{}","\x1b[94m", "Hello, world!", "\x1b[0m");
+    cprint("\x1b[94m", "Hello World!")
 }
