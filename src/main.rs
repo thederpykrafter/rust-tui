@@ -1,12 +1,23 @@
-fn cprintln(color: &str, text: &str) {
-    println!("{}{}{}", color, text, "\x1b[0m");
+extern crate term_size;
+use std::{thread::sleep, time};
+mod tfuncs;
+
+fn intro() {
+    print!("\x1b[?1049h");
+    tfuncs::fill_term("\x1b[94m", "T");
+    sleep(time::Duration::from_millis(1000));
+    tfuncs::fill_term("\x1b[92m", "D");
+    sleep(time::Duration::from_millis(1000));
+    tfuncs::fill_term("\x1b[95m", "K");
+    sleep(time::Duration::from_millis(1000));
+    print!("\x1b[2J");
 }
 
-fn cprint(color: &str, text: &str) {
-    print!("{}{}{}", color, text, "\x1b[0m");
+fn landing_page() {
+    tfuncs::fill_term("\x1b[49m", "#")
 }
 
 fn main() {
-    cprint("\x1b[94m", "Hello World!");
-    cprintln("\x1b[94m", "Hello World!")
+    intro();
+    landing_page()
 }
